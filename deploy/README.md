@@ -22,7 +22,7 @@ The original source and prior logo/hero improvements are preserved. Native MP4 p
    - `GOOGLE_SHEET_ID`: the ID between `/d/` and `/edit` in the sheet URL.
    - `GOOGLE_SERVICE_ACCOUNT_EMAIL`: `client_email` from the key.
    - `GOOGLE_PRIVATE_KEY`: `private_key` from the key (real newlines or literal `\n` both work).
-   - `ADMIN_PASSWORD`: a unique password of at least 16 characters; preferably generate 32 random characters in a password manager.
+   - `ADMIN_PASSWORD`: your chosen non-empty admin password.
 
    Keep credentials in hosting environment variables, never browser code or committed files. Do not paste the private key into chat.
 
@@ -32,7 +32,7 @@ The original source and prior logo/hero improvements are preserved. Native MP4 p
 
 The optional marketing checkbox is recorded independently from the inquiry. No marketing messages are sent automatically. No inquiry data is exposed through a public read endpoint.
 
-When credentials are absent, the public site shows the default season and submissions fail visibly with contact alternatives; admin saving is unavailable. When configured storage fails, the server returns a contact fallback rather than advertising stale availability.
+When credentials are absent, the public site shows the default season and submissions fail visibly with contact alternatives; admin sign-in works with ADMIN_PASSWORD, but settings are read-only and saving is unavailable. When configured storage fails, the server returns a contact fallback rather than advertising stale availability.
 
 For public launch, enable hosting firewall/rate limits for POST `/api/admin` and `/api/inquire` to manage automated abuse. The form includes a honeypot, length/type checks, origin checks, and server-only Google credentials. The admin password is held only in the current page's memory and cleared on sign-out or reload. Changes are last-save-wins, so coordinate edits if several people administer the site.
 
@@ -124,7 +124,7 @@ These targets are currently code-defined, not editable in the admin interface. M
 
 ### 5. Add Vercel environment variables
 
-Open the linked Vercel project → Settings → Environment Variables. Add the four variables described earlier in this README. Use the spreadsheet ID alone for GOOGLE_SHEET_ID, the service-account email for GOOGLE_SERVICE_ACCOUNT_EMAIL, and the entire PEM private key for GOOGLE_PRIVATE_KEY, including its BEGIN/END lines. Literal backslash-n sequences from JSON or actual newlines are supported. Set ADMIN_PASSWORD to a unique password of at least 16 characters.
+Open the linked Vercel project → Settings → Environment Variables. Add the four variables described earlier in this README. Use the spreadsheet ID alone for GOOGLE_SHEET_ID, the service-account email for GOOGLE_SERVICE_ACCOUNT_EMAIL, and the entire PEM private key for GOOGLE_PRIVATE_KEY, including its BEGIN/END lines. Literal backslash-n sequences from JSON or actual newlines are supported. Set ADMIN_PASSWORD to your chosen non-empty password.
 
 Apply the variables to Production. If testing through Vercel Preview deployments, use a separate test spreadsheet and its credentials for Preview to avoid mixing test contacts with real leads. Redeploy after changing environment variables. This site's local preview reads process environment variables and does not automatically read `.env` files.
 
@@ -139,7 +139,7 @@ Apply the variables to Production. If testing through Vercel Preview deployments
 
 ### Troubleshooting
 
-- Admin password rejected: check ADMIN_PASSWORD in the correct Vercel environment, minimum length, and redeployment.
+- Admin password rejected: check ADMIN_PASSWORD in the correct Vercel environment, exact value, and redeployment.
 - “Connect Google Sheets”: one or more of the three Google variables is missing.
 - Cannot read settings or save inquiries: check API enablement, spreadsheet ID, exact tab/range names, and Editor sharing with the service-account email.
 - Authentication fails: check the private key's newlines, matching client_email, revoked keys, and deployment environment.

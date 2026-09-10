@@ -3,11 +3,17 @@ const store=require('../lib/store');const originalFetch=global.fetch;
 (async()=>{
  const config=structuredClone(store.defaults);assert.equal(config.year,2027);assert.equal(config.orderUrl,'');
  for(const patch of [{year:2026},{startDate:'2027-04-22'},{startDate:'2027-02-30',endDate:'2027-03-03'},{orderUrl:'javascript:alert(1)'},{orderUrl:'http://example.com'}])assert.throws(()=>store.validate({...config,...patch}));
- const secret='test-password-only-123456';process.env.ADMIN_PASSWORD=secret;assert.equal(store.authorized({headers:{authorization:'Bearer wrong'}}),false);assert.equal(store.authorized({headers:{authorization:'Bearer '+secret}}),true);
+ delete process.env.ADMIN_PASSWORD;assert.equal(store.authorized({headers:{authorization:'Bearer '}}),false);process.env.ADMIN_PASSWORD='';assert.equal(store.authorized({headers:{authorization:'Bearer '}}),false);const secret='short';process.env.ADMIN_PASSWORD=secret;assert.equal(store.authorized({headers:{authorization:'Bearer wrong'}}),false);assert.equal(store.authorized({headers:{authorization:'Bearer '+secret}}),true);
  process.env.GOOGLE_SHEET_ID='test-sheet';process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL='test@example.com';process.env.GOOGLE_PRIVATE_KEY=generateKeyPairSync('rsa',{modulusLength:2048,privateKeyEncoding:{type:'pkcs8',format:'pem'},publicKeyEncoding:{type:'spki',format:'pem'}}).privateKey;
  let saved=JSON.stringify(config),rows=[],fail=false;
  global.fetch=async(url,opts)=>{if(fail)return {ok:false};if(url.includes('oauth2'))return {ok:true,json:async()=>({access_token:'test'})};if(opts.method==='PUT')saved=JSON.parse(opts.body).values[0][0];if(opts.method==='POST')rows.push(JSON.parse(opts.body).values[0]);return {ok:true,json:async()=>({values:[[saved]]})};};
  const call=async(name,method,body,auth='Bearer '+secret)=>{let code=200,result;const res={setHeader(){},status(n){code=n;return this},json(x){result=x;return this},end(x){result=x;return this}};await require('../api/'+name)({method,headers:{authorization:auth,host:'localhost'},body},res);return {code,result};};
+ const sheetId=process.env.GOOGLE_SHEET_ID;delete process.env.GOOGLE_SHEET_ID;
+ assert.equal((await call('admin','POST',{},'Bearer wrong')).code,401);
+ const login=await call('admin','POST',{});assert.equal(login.code,200);assert.equal(login.result.storageConfigured,false);assert.equal(login.result.year,2027);
+ assert.equal((await call('settings','PUT',config)).code,503);
+ process.env.GOOGLE_SHEET_ID=sheetId;
+ assert.equal((await call('admin','POST',{})).result.storageConfigured,true);
  assert.equal((await call('settings','PUT',config,'Bearer no')).code,401);
  config.year=2028;config.startDate='2028-04-10';config.endDate='2028-04-20';config.suites[0].available=false;config.suites[0].price='$5,000';config.orderUrl='https://example.com/order';assert.equal((await call('settings','PUT',config)).code,200);
  const fresh=(await call('settings','GET')).result;assert.equal(fresh.year,2028);assert.equal(fresh.suites[0].available,false);

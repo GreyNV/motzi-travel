@@ -44,7 +44,7 @@ The reviewed VEED help page does not document a player SDK or parameters for see
 
 ## Production handoff for phase one
 
-The owner will set ADMIN_PASSWORD in Vercel and review production. It must be at least 16 characters. Admin saving and inquiry storage also require GOOGLE_SHEET_ID, GOOGLE_SERVICE_ACCOUNT_EMAIL, and GOOGLE_PRIVATE_KEY, plus Settings and Inquiries tabs; see deploy/README.md. Apply variables to Production and redeploy for changes to take effect. No credentials belong in this document or Git.
+The owner will set ADMIN_PASSWORD in Vercel and review production. Any non-empty password is accepted. Admin saving and inquiry storage also require GOOGLE_SHEET_ID, GOOGLE_SERVICE_ACCOUNT_EMAIL, and GOOGLE_PRIVATE_KEY, plus Settings and Inquiries tabs; see deploy/README.md. Apply variables to Production and redeploy for changes to take effect. No credentials belong in this document or Git.
 
 Source references:
 - VEED sharing/embedding: https://support.veed.io/en/articles/11029688-how-to-share-your-videos
