@@ -8,6 +8,29 @@
 <body>
 <x-dc>
 <helmet>
+  <title>Motzi Travel — Passover {{ year }} Suite Rentals | Miami Beach</title>
+  <meta name="description" content="Two-bedroom, two-bath suites with fully kashered kitchens at Seacoast Suites, Miami Beach. {{ dateLabel }}. On the beach, with stunning views, a balcony, and room for up to six.">
+  <link rel="canonical" href="https://motzitravel.com/">
+  <meta name="theme-color" content="#0c2321">
+
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="/favicon-192.png" type="image/png" sizes="192x192">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Motzi Travel">
+  <meta property="og:title" content="Motzi Travel — Passover {{ year }} Suite Rentals | Miami Beach">
+  <meta property="og:description" content="Two-bedroom, two-bath suites with fully kashered kitchens at Seacoast Suites, Miami Beach. {{ dateLabel }}.">
+  <meta property="og:url" content="https://motzitravel.com/">
+  <meta property="og:image" content="https://motzitravel.com/images/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Motzi Travel — Passover {{ year }} Suite Rentals | Miami Beach">
+  <meta name="twitter:description" content="Two-bedroom, two-bath suites with fully kashered kitchens at Seacoast Suites, Miami Beach. {{ dateLabel }}.">
+  <meta name="twitter:image" content="https://motzitravel.com/images/og-image.jpg">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@300;400;500;600&family=Marcellus&display=swap" rel="stylesheet">
@@ -22,6 +45,14 @@
     ::selection{background:#b8924a;color:#fff}
     @keyframes slowZoom{from{transform:scale(1.02)}to{transform:scale(1.12)}}
     @keyframes fadeUp{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+    .brand-logo{display:block;width:auto;height:54px;object-fit:contain;filter:brightness(0) invert(1) sepia(14%) saturate(420%) hue-rotate(346deg) brightness(1.08) drop-shadow(0 3px 14px rgba(0,0,0,0.48));opacity:.96}
+    .hero-logo{display:block;width:clamp(120px,14vw,178px);height:auto;margin:0 0 18px;filter:brightness(0) invert(1) sepia(14%) saturate(420%) hue-rotate(346deg) brightness(1.08) drop-shadow(0 7px 24px rgba(0,0,0,0.58));opacity:.97}
+    .hero-copy-panel{position:relative;isolation:isolate;max-width:760px;padding:clamp(20px,3vw,34px) clamp(20px,3.4vw,40px);margin-left:clamp(0px,2vw,18px)}
+    .hero-copy-panel:before{content:"";position:absolute;z-index:-1;inset:0;background:linear-gradient(90deg,rgba(7,22,20,.72) 0%,rgba(7,22,20,.5) 58%,rgba(7,22,20,.18) 100%);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 24px 80px rgba(0,0,0,.36)}
+    .hero-contrast-gradient{position:absolute;inset:0;background:linear-gradient(90deg,rgba(6,19,18,.78) 0%,rgba(6,19,18,.56) 38%,rgba(6,19,18,.24) 70%,rgba(6,19,18,.08) 100%),linear-gradient(180deg,rgba(8,23,22,.42) 0%,rgba(8,23,22,.08) 34%,rgba(8,23,22,.86) 100%)}
+    .hero-text-shadow{text-shadow:0 3px 18px rgba(0,0,0,.74),0 1px 4px rgba(0,0,0,.82)}
+    @media (max-width:700px){.brand-logo{height:48px}.hero-logo{width:118px;margin-bottom:14px}.hero-copy-panel{padding:20px 18px;margin-left:0}.hero-copy-panel:before{background:linear-gradient(90deg,rgba(7,22,20,.76),rgba(7,22,20,.44));backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}}
+  a,button{transition:background .2s,color .2s} :focus-visible{outline:3px solid #b8924a!important;outline-offset:4px} @media(max-width:700px){.catering-photo{grid-row:1}} @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
   </style>
 </helmet>
 
@@ -31,15 +62,14 @@
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
       <rect width="120" height="120" fill="#0c2321"></rect>
       <text x="60" y="58" font-family="Georgia,serif" font-size="26" fill="#b8924a" text-anchor="middle" letter-spacing="3">MT</text>
-      <text x="60" y="76" font-family="Helvetica,sans-serif" font-size="7" fill="#e7ded0" text-anchor="middle" letter-spacing="2.5">PASSOVER 2026</text>
+      <text x="60" y="76" font-family="Helvetica,sans-serif" font-size="7" fill="#e7ded0" text-anchor="middle" letter-spacing="2.5">PASSOVER {{ year }}</text>
     </svg>
   </template>
 
   <!-- NAV -->
-  <nav style="position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(18px,4vw,44px);height:74px;background:rgba(12,32,30,0.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(184,146,74,0.22)">
-    <a href="#top" style="display:flex;flex-direction:column;line-height:1;color:#f6f0e4">
-      <span style="font-family:'Marcellus',serif;font-size:23px;letter-spacing:0.36em;padding-left:0.36em">MOTZI</span>
-      <span style="font-size:9.5px;letter-spacing:0.4em;padding-left:0.4em;color:#b8924a;margin-top:5px">TRAVEL · MIAMI BEACH</span>
+  <nav style="position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(18px,4vw,44px);height:78px;background:rgba(12,32,30,0.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(184,146,74,0.22)">
+    <a href="#top" aria-label="Motzi Travel home" style="display:flex;align-items:center;line-height:1;color:#f6f0e4">
+      <img src="images/motzi-logo.png" alt="Motzi Travel" class="brand-logo">
     </a>
     <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
       <div style="display:flex;align-items:center;gap:32px">
@@ -73,17 +103,20 @@
   <!-- HERO -->
   <header id="top" style="position:relative;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden">
     <div style="position:absolute;inset:0;background-image:url('images/hero.jpg');background-size:cover;background-position:center;animation:slowZoom 24s ease-in-out infinite alternate"></div>
-    <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,23,22,0.5) 0%,rgba(8,23,22,0.12) 36%,rgba(8,23,22,0.85) 100%)"></div>
+    <div class="hero-contrast-gradient"></div>
     <div style="position:relative;z-index:2;max-width:1180px;margin:0 auto;width:100%;padding:clamp(100px,14vh,150px) clamp(20px,4vw,44px) {{ heroBottomPad }};animation:fadeUp 1s ease both">
-      <div style="display:inline-flex;align-items:center;gap:12px;margin-bottom:24px">
+      <div class="hero-copy-panel">
+      <img src="images/motzi-logo.png" alt="Motzi Travel" class="hero-logo">
+      <div class="hero-text-shadow" style="display:inline-flex;align-items:center;gap:12px;margin-bottom:24px">
         <span style="width:34px;height:1px;background:#b8924a"></span>
-        <span style="font-family:'Marcellus',serif;font-size:12.5px;letter-spacing:0.3em;text-transform:uppercase;color:#e7cf9c">Miami Beach, FL · April 1–10, 2026</span>
+        <span style="font-family:'Marcellus',serif;font-size:12.5px;letter-spacing:0.3em;text-transform:uppercase;color:#e7cf9c">Miami Beach, FL · {{ dateLabel }}</span>
       </div>
-      <h1 style="font-family:'Cormorant Garamond',serif;font-weight:600;color:#fdfaf4;font-size:clamp(2.7rem,6.6vw,5.4rem);line-height:1.03;letter-spacing:-0.01em;max-width:16ch">Passover 2026 Suite Rentals</h1>
-      <p style="color:rgba(246,240,228,0.87);font-size:clamp(1.05rem,1.8vw,1.32rem);font-weight:300;max-width:58ch;margin-top:24px;line-height:1.6">Two-bedroom, two-bath suites with fully kashered kitchens at Seacoast Suites — on the beach, with stunning views, a balcony, and room for up to six.</p>
+      <h1 class="hero-text-shadow" style="font-family:'Cormorant Garamond',serif;font-weight:600;color:#fdfaf4;font-size:clamp(2.7rem,6.6vw,5.4rem);line-height:1.03;letter-spacing:0;max-width:16ch">Passover {{ year }} Suite Rentals</h1>
+      <p class="hero-text-shadow" style="color:rgba(246,240,228,0.92);font-size:clamp(1.05rem,1.8vw,1.32rem);font-weight:300;max-width:58ch;margin-top:24px;line-height:1.6">Two-bedroom, two-bath suites with fully kashered kitchens at Seacoast Suites — on the beach, with stunning views, a balcony, and room for up to six.</p>
       <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:38px">
         <a href="#inquire" style="font-size:13.5px;letter-spacing:0.16em;text-transform:uppercase;color:#0c2321;background:#b8924a;padding:18px 40px;border-radius:2px;font-weight:500" style-hover="background:#caa457">Inquire Now</a>
         <a href="#suites" style="font-size:13.5px;letter-spacing:0.16em;text-transform:uppercase;color:#fdfaf4;background:rgba(255,255,255,0.08);border:1px solid rgba(246,240,228,0.42);padding:18px 40px;border-radius:2px;backdrop-filter:blur(6px)" style-hover="background:rgba(255,255,255,0.16)">See Suites &amp; Pricing</a>
+      </div>
       </div>
     </div>
   </header>
@@ -140,7 +173,7 @@
         <div style="max-width:58ch">
           <span style="font-family:'Marcellus',serif;font-size:12.5px;letter-spacing:0.3em;text-transform:uppercase;color:#9c7833">Suites &amp; Pricing</span>
           <h2 style="font-family:'Cormorant Garamond',serif;font-weight:600;color:#12312f;font-size:clamp(2rem,4vw,3.2rem);line-height:1.06;margin-top:14px">Six apartments, six price points</h2>
-          <p style="color:#5f6e6b;font-size:1.02rem;font-weight:300;line-height:1.65;margin-top:16px">Dates April 1st – April 10th 2026. Extended stay options available for an additional fee.</p>
+          <p style="color:#5f6e6b;font-size:1.02rem;font-weight:300;line-height:1.65;margin-top:16px">{{ dateLabel }}. Extended stay options available for an additional fee.</p>
         </div>
         <a href="#inquire" style="font-size:13px;letter-spacing:0.14em;text-transform:uppercase;color:#12312f;border-bottom:1.5px solid #b8924a;padding-bottom:6px" style-hover="color:#b8924a">Check availability →</a>
       </div>
@@ -154,7 +187,8 @@
         <sc-for list="{{ suites }}" as="s" hint-placeholder-count="6">
           <div style="display:flex;flex-direction:column;background:#fff;border:1px solid #e8dfce;border-radius:2px;overflow:hidden">
             <div style="position:relative;aspect-ratio:16/10;background:repeating-linear-gradient(135deg,#e7dfce,#e7dfce 14px,#efe8d7 14px,#efe8d7 28px);display:flex;align-items:center;justify-content:center;overflow:hidden">
-              <iframe src="{{ s.embed }}" title="{{ s.name }} video walkthrough" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen frameBorder="0" style="position:absolute;inset:0;width:100%;height:100%;border:none;display:block"></iframe>
+              <video src="{{ s.video }}" aria-label="{{ s.name }} video walkthrough" controls playsInline preload="none" poster="images/g2_living_room.jpg" style="width:100%;height:100%;object-fit:contain;background:#0c2321"></video>
+              <sc-if value="{{ s.soldOut }}"><div style="position:absolute;left:0;right:0;top:30%;text-align:center;background:rgba(92,24,18,.94);color:white;padding:18px 10px;font-size:26px;font-weight:600;letter-spacing:.18em;pointer-events:none">SOLD OUT</div></sc-if>
             </div>
             <div style="padding:clamp(22px,2.4vw,28px);display:flex;flex-direction:column;flex:1">
               <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
@@ -167,7 +201,7 @@
                 <span style="font-family:'Cormorant Garamond',serif;font-size:2.05rem;font-weight:600;color:#12312f;line-height:1">{{ s.price }}</span>
                 <span style="font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;color:#8b9997;line-height:1.3">Total<br>Incl. tax &amp; resort fee</span>
               </div>
-              <a href="#inquire" style="margin-top:20px;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:#12312f;font-weight:500;align-self:flex-start;border-bottom:1.5px solid #b8924a;padding-bottom:5px" style-hover="color:#b8924a">Reserve this suite →</a>
+              <sc-if value="{{ s.available }}"><a href="#inquire" style="margin-top:20px;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:#12312f;font-weight:500;align-self:flex-start;border-bottom:1.5px solid #b8924a;padding-bottom:5px" style-hover="color:#b8924a">Reserve this suite →</a></sc-if><sc-if value="{{ s.soldOut }}"><p style="margin-top:20px;color:#7d2920;font-weight:500">Sold out for this season</p></sc-if><a href="{{ s.video }}" target="_blank" rel="noopener" style="font-size:13px;margin-top:12px;text-decoration:underline">Open video walkthrough ↗</a>
             </div>
           </div>
         </sc-for>
@@ -196,12 +230,12 @@
         <div>
           <span style="font-family:'Marcellus',serif;font-size:12.5px;letter-spacing:0.3em;text-transform:uppercase;color:#e7cf9c">Catering Option</span>
           <h2 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(2rem,4vw,3.2rem);line-height:1.06;margin-top:14px;color:#fdfaf4">Order your Pesach meals in advance</h2>
-          <p style="color:rgba(246,240,228,0.78);font-size:clamp(1rem,1.55vw,1.1rem);font-weight:300;line-height:1.7;margin-top:20px">Your suite has a fully kashered kitchen if you'd like to cook. If you'd rather not, complete the 2026 Motzi Pesach order form and we'll take care of the meals.</p>
-          <a href="https://pci.jotform.com/motzitravel/2026-motzi-pesach-order-form" target="_blank" rel="noopener" style="display:inline-block;margin-top:32px;font-size:13px;letter-spacing:0.16em;text-transform:uppercase;color:#0c2321;background:#b8924a;padding:17px 36px;border-radius:2px;font-weight:500" style-hover="background:#caa457">Open the Order Form →</a>
-          <p style="color:rgba(246,240,228,0.5);font-size:0.85rem;font-weight:300;margin-top:16px">Opens pci.jotform.com in a new tab</p>
+          <p style="color:rgba(246,240,228,0.78);font-size:clamp(1rem,1.55vw,1.1rem);font-weight:300;line-height:1.7;margin-top:20px">Your suite has a fully kashered kitchen if you'd like to cook. If you'd rather not, explore our catering option and let us take care of the meals.</p>
+          <sc-if value="{{ hasOrderUrl }}"><a href="{{ orderUrl }}" target="_blank" rel="noopener" style="display:inline-block;margin-top:32px;font-size:13px;letter-spacing:0.16em;text-transform:uppercase;color:#0c2321;background:#b8924a;padding:17px 36px;border-radius:2px;font-weight:500" style-hover="background:#caa457">Open the Order Form →</a></sc-if><sc-if value="{{ noOrderUrl }}"><p style="margin-top:24px">Ordering for {{ year }} opens soon. <a href="#inquire" style="text-decoration:underline">Ask about catering →</a></p></sc-if>
+          <p style="color:rgba(246,240,228,0.5);font-size:0.85rem;font-weight:300;margin-top:16px">Food photo is illustrative. Contact us for menus and catering availability.</p>
         </div>
-        <div style="aspect-ratio:4/5;border:1px solid rgba(184,146,74,0.28);overflow:hidden">
-          <img src="images/catering.jpg" alt="Motzi Travel Pesach catering" style="width:100%;height:100%;object-fit:cover;display:block">
+        <div class="catering-photo" style="aspect-ratio:4/3;border:1px solid rgba(184,146,74,0.28);overflow:hidden">
+          <img src="images/catering-food.jpg" alt="Roasted chicken with golden potatoes and fresh herbs — illustrative serving suggestion" style="width:100%;height:100%;object-fit:cover;display:block">
         </div>
       </div>
     </section>
@@ -285,7 +319,6 @@
                   <option>Housekeeping</option>
                   <option>Onsite Parking</option>
                   <option>Babysitting</option>
-                  <option>Shul Groups</option>
                   <option>Catering</option>
                 </select>
               </label>
@@ -294,7 +327,7 @@
               <span style="font-size:11.5px;letter-spacing:0.14em;text-transform:uppercase;color:#7a8887">Message</span>
               <textarea name="message" rows="3" placeholder="Dates, party details, or any questions…" style="width:100%;padding:13px 15px;border:1px solid #d8cdb8;background:#fdfaf4;font-size:15px;color:#1b2b29;border-radius:2px;outline:none;resize:vertical" style-focus="border-color:#b8924a;background:#fff"></textarea>
             </label>
-            <button type="submit" style="margin-top:5px;background:#b8924a;color:#0c2321;border:none;padding:17px;font-size:13px;letter-spacing:0.18em;text-transform:uppercase;font-weight:500;border-radius:2px;cursor:pointer" style-hover="background:#caa457">Send My Inquiry</button>
+            <label style="position:absolute;left:-10000px" aria-hidden="true">Website<input name="website" tabIndex="-1" autocomplete="off"></label><label style="font-size:14px;line-height:1.5"><input type="checkbox" name="marketingConsent"> I’d like occasional updates and offers from Motzi Travel.</label><p style="font-size:13px;color:#5f6e6b">We save your contact details to respond to this inquiry. Marketing updates are optional.</p><p role="alert" style="color:#9a3025">{{ formError }}</p><button disabled="{{ submitting }}" type="submit" style="margin-top:5px;background:#b8924a;color:#0c2321;border:none;padding:17px;font-size:13px;letter-spacing:0.18em;text-transform:uppercase;font-weight:500;border-radius:2px;cursor:pointer" style-hover="background:#caa457">{{ submitLabel }}</button>
           </form>
         </sc-if>
       </div>
@@ -310,7 +343,7 @@
             <span style="font-family:'Marcellus',serif;font-size:22px;letter-spacing:0.36em;color:#f6f0e4;padding-left:0.36em">MOTZI</span>
             <span style="font-size:9.5px;letter-spacing:0.4em;color:#b8924a;margin-top:5px;padding-left:0.4em">TRAVEL · MIAMI BEACH</span>
           </div>
-          <p style="font-size:0.94rem;font-weight:300;line-height:1.7;max-width:32ch">Passover 2026 suite rentals at Seacoast Suites, Miami Beach. April 1–10, 2026.</p>
+          <p style="font-size:0.94rem;font-weight:300;line-height:1.7;max-width:32ch">Passover {{ year }} suite rentals at Seacoast Suites, Miami Beach. {{ dateLabel }}.</p>
         </div>
         <div>
           <h4 style="font-family:'Marcellus',serif;font-size:11.5px;letter-spacing:0.22em;text-transform:uppercase;color:#e7cf9c;margin-bottom:15px">Explore</h4>
@@ -335,7 +368,7 @@
         </div>
       </div>
       <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;padding-top:24px;font-size:0.81rem;color:rgba(246,240,228,0.5)">
-        <span>© 2026 Motzi Travel. All rights reserved.</span>
+        <span>© {{ year }} Motzi Travel. All rights reserved.</span>
         <span>Suites feature fully kashered kitchens</span>
       </div>
     </div>
@@ -346,7 +379,7 @@
       <div style="position:fixed;bottom:0;left:0;right:0;z-index:55;background:rgba(12,32,30,0.95);backdrop-filter:blur(10px);padding:12px 16px;border-top:1px solid rgba(184,146,74,0.3);display:flex;gap:12px;align-items:center">
         <div style="flex:1;line-height:1.2">
           <div style="font-family:'Cormorant Garamond',serif;font-size:17px;color:#f6f0e4">Suites are limited</div>
-          <div style="font-size:11px;letter-spacing:0.05em;color:rgba(246,240,228,0.65)">April 1–10, 2026 · Miami Beach</div>
+          <div style="font-size:11px;letter-spacing:0.05em;color:rgba(246,240,228,0.65)">{{ dateLabel }} · Miami Beach</div>
         </div>
         <a href="#inquire" style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#0c2321;background:#b8924a;padding:13px 22px;border-radius:2px;font-weight:500;white-space:nowrap">Inquire</a>
       </div>
@@ -358,19 +391,13 @@
 <script type="text/x-dc" data-dc-script data-props="{&quot;showStickyInquire&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Layout&quot;},&quot;showTrustStrip&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Layout&quot;},&quot;showCatering&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Layout&quot;}}">
 // All suite specs, prices and video ids are taken verbatim from
 // motzitravel.com/pricing. VEED share links converted to /embed/ form.
-const SUITES = [
-  { name: '2 bedroom 2 bath apartment city view / partial ocean-bay view', sqft: '1,200 sq ft', layout: '1 living room · 2 bedrooms (3 beds) · 2 baths', feature: 'This apartment offers a pool with a view.', price: '$4,005', id: 'e245af0d-4def-45d6-9d59-bbefd0d69602' },
-  { name: '2 bedroom 2 bath apartment with bay view', sqft: '1,200 sq ft', layout: '1 living room · 2 bedrooms (3 beds) · 2 baths', feature: 'This apartment offers a pool with a view.', price: '$4,541', id: 'b34dbfcf-6b64-4338-afdb-0a9e799826bd' },
-  { name: '2 bedroom 2 bath apartment with ocean view', sqft: '1,200 sq ft', layout: '1 living room · 2 bedrooms (3 beds) · 2 baths', feature: 'This apartment offers a pool with a view.', price: '$4,675', id: '9bdbcc98-cac4-4c37-82f8-51c542c3a209' },
-  { name: '2 bedroom 2 bath master apartment with bay view', sqft: '1,600 sq ft', layout: '1 living room · 2 bedrooms (3 beds) · 2 baths', feature: "This apartment's standout feature is the pool with a view.", price: '$5,211', id: '3200dc27-9ad7-4d47-acba-847215cf972e' },
-  { name: '2 bedroom 2 bath master apartment with full ocean view', sqft: '1,600 sq ft', layout: '1 living room · 2 bedrooms (3 beds) · 2 baths', feature: "This apartment's standout feature is the pool with a view.", price: '$5,345', id: 'a8b322bf-7f98-4f37-bce1-2b81b0fcff55' },
-  { name: '3 bedroom 2 bath master apartment with bay view', sqft: '1,700 sq ft', layout: '1 living room · 3 bedrooms (4 beds) · 2 baths', feature: "This apartment's standout feature is the pool with a view.", price: '$6,283', id: '3099305e-b01d-4baf-aace-b000c7544e5f' }
-];
+const DEFAULTS = {"year":2027,"startDate":"","endDate":"","orderUrl":"","suites":[{"name":"2 bedroom 2 bath apartment city view / partial ocean-bay view","sqft":"1,200 sq ft","layout":"1 living room · 2 bedrooms (3 beds) · 2 baths","feature":"This apartment offers a pool with a view.","price":"$4,005","id":"e245af0d-4def-45d6-9d59-bbefd0d69602","available":true,"video":"/videos/2B%20CDeluxe.mp4"},{"name":"2 bedroom 2 bath apartment with bay view","sqft":"1,200 sq ft","layout":"1 living room · 2 bedrooms (3 beds) · 2 baths","feature":"This apartment offers a pool with a view.","price":"$4,541","id":"b34dbfcf-6b64-4338-afdb-0a9e799826bd","available":true,"video":"/videos/2B%20BDeluxe.mp4"},{"name":"2 bedroom 2 bath apartment with ocean view","sqft":"1,200 sq ft","layout":"1 living room · 2 bedrooms (3 beds) · 2 baths","feature":"This apartment offers a pool with a view.","price":"$4,675","id":"9bdbcc98-cac4-4c37-82f8-51c542c3a209","available":true,"video":"/videos/2B%20ODeluxe.mp4"},{"name":"2 bedroom 2 bath master apartment with bay view","sqft":"1,600 sq ft","layout":"1 living room · 2 bedrooms (3 beds) · 2 baths","feature":"This apartment's standout feature is the pool with a view.","price":"$5,211","id":"3200dc27-9ad7-4d47-acba-847215cf972e","available":true,"video":"/videos/2B%20BMaster.mp4"},{"name":"2 bedroom 2 bath master apartment with full ocean view","sqft":"1,600 sq ft","layout":"1 living room · 2 bedrooms (3 beds) · 2 baths","feature":"This apartment's standout feature is the pool with a view.","price":"$5,345","id":"a8b322bf-7f98-4f37-bce1-2b81b0fcff55","available":true,"video":"/videos/2B%20OMaster.mp4"},{"name":"3 bedroom 2 bath master apartment with bay view","sqft":"1,700 sq ft","layout":"1 living room · 3 bedrooms (4 beds) · 2 baths","feature":"This apartment's standout feature is the pool with a view.","price":"$6,283","id":"3099305e-b01d-4baf-aace-b000c7544e5f","available":true,"video":"/videos/3B%20Bay.mp4"}],"addons":[{"t":"Housekeeping","p":"$120 daily","n":"Reservation in advance is necessary."},{"t":"Onsite Parking","p":"$20 daily","n":""},{"t":"Babysitting","p":"$20 per hour","n":"Reservation in advance is required."}]};
 
 class Component extends DCLogic {
-  state = { mobileOpen: false, submitted: false, desktop: true };
+  state = { mobileOpen: false, submitted: false, desktop: true, config: DEFAULTS, submitting: false, formError: "" };
 
   componentDidMount() {
+    fetch('/api/settings', {cache:'no-store'}).then(r => {if(!r.ok) throw new Error(); return r.json();}).then(config => this.setState({config})).catch(() => {});
     this._mq = window.matchMedia('(min-width: 880px)');
     this._onMQ = (e) => this.setState({ desktop: e.matches });
     if (this._mq.matches !== this.state.desktop) this.setState({ desktop: this._mq.matches });
@@ -382,9 +409,13 @@ class Component extends DCLogic {
   }
 
   renderVals() {
+    const config = this.state.config;
+    const formatDate = d => new Date(d + 'T12:00:00Z').toLocaleDateString('en-US', {month:'long',day:'numeric',year:'numeric',timeZone:'UTC'});
+    const dateLabel = config.startDate && config.endDate ? formatDate(config.startDate) + ' – ' + formatDate(config.endDate) : 'Dates to be announced · ' + config.year;
     const isMobile = !this.state.desktop;
     const sticky = this.props.showStickyInquire ?? true;
     return {
+      year: config.year, dateLabel, orderUrl: config.orderUrl, hasOrderUrl: !!config.orderUrl, noOrderUrl: !config.orderUrl, formError: this.state.formError, submitting: this.state.submitting, submitLabel: this.state.submitting ? "Sending…" : "Send My Inquiry",
       isMobile,
       isDesktop: !isMobile,
       mobileOpen: this.state.mobileOpen,
@@ -397,7 +428,17 @@ class Component extends DCLogic {
       heroBottomPad: sticky && isMobile ? '120px' : 'clamp(56px,8vw,96px)',
       toggleMobile: () => this.setState(s => ({ mobileOpen: !s.mobileOpen })),
       closeMobile: () => this.setState({ mobileOpen: false }),
-      submit: (e) => { e.preventDefault(); this.setState({ submitted: true }); },
+      submit: async (e) => {
+        e.preventDefault(); if(this.state.submitting) return;
+        const form = e.target;
+        const data = Object.fromEntries(new FormData(form));
+        this.setState({submitting:true, formError:''});
+        try {
+          const r = await fetch('/api/inquire', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
+          if(!r.ok) throw new Error('Your inquiry could not be saved. Please try again or call (201) 614-7732.');
+          this.setState({submitted:true,submitting:false});
+        } catch(error) {this.setState({submitting:false,formError:error.message || 'Unable to send. Please call (201) 614-7732.'});}
+      },
       trust: [
         { k: '40+', v: 'Years of experience' },
         { k: 'Up to 6', v: 'Guests per suite' },
@@ -405,21 +446,24 @@ class Component extends DCLogic {
         { k: 'On the beach', v: 'Miami Beach, FL' }
       ],
       included: [
-        'Complimentary beach and pool chairs',
+        'Complimentary beach chairs',
+        'Pool chairs — based on availability',
+        'Fully kashered kitchen',
+        'Pack & plays — based on availability',
+        'Urns — based on availability',
+        'Folding tables — based on availability',
+        'High chairs — based on availability',
+        'Blow-up mattresses — based on availability',
+        'Excellent concierge service',
         'Sports facilities, playground and pickleball',
         'Fitness center',
         'Stunning views and a balcony in every suite',
         'Accommodation for up to 6 people',
         'Steps from the beach, playgrounds and kosher for Passover restaurants'
       ],
-      suites: SUITES.map(s => ({ ...s, embed: 'https://www.veed.io/embed/' + s.id })),
-      suiteOptions: SUITES.map(s => s.name + ' — ' + s.price).concat(['Not sure yet']),
-      addons: [
-        { t: 'Housekeeping', p: '$120 daily', n: 'Reservation in advance is necessary.' },
-        { t: 'Onsite Parking', p: '$20 daily', n: '' },
-        { t: 'Babysitting', p: '$20 per hour', n: 'Reservation in advance is required.' },
-        { t: 'Shul Groups', p: 'On request', n: 'Reservation in advance is required.' }
-      ],
+      suites: config.suites.map(s => ({...s, soldOut: !s.available})),
+      suiteOptions: ['Not sure yet'].concat(config.suites.filter(s => s.available).map(s => s.name + ' — ' + s.price)),
+      addons: config.addons,
       gallery: [
         { label: 'Property exterior', img: 'images/g1_property.jpg' },
         { label: 'Suite living room', img: 'images/g2_living_room.jpg' },

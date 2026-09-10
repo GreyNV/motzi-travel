@@ -1,0 +1,85 @@
+{
+  "year": 2027,
+  "startDate": "",
+  "endDate": "",
+  "orderUrl": "",
+  "suites": [
+    {
+      "name": "2 bedroom 2 bath apartment city view / partial ocean-bay view",
+      "sqft": "1,200 sq ft",
+      "layout": "1 living room · 2 bedrooms (3 beds) · 2 baths",
+      "feature": "This apartment offers a pool with a view.",
+      "price": "$4,005",
+      "id": "e245af0d-4def-45d6-9d59-bbefd0d69602",
+      "available": true,
+      "video": "/videos/2B%20CDeluxe.mp4"
+    },
+    {
+      "name": "2 bedroom 2 bath apartment with bay view",
+      "sqft": "1,200 sq ft",
+      "layout": "1 living room · 2 bedrooms (3 beds) · 2 baths",
+      "feature": "This apartment offers a pool with a view.",
+      "price": "$4,541",
+      "id": "b34dbfcf-6b64-4338-afdb-0a9e799826bd",
+      "available": true,
+      "video": "/videos/2B%20BDeluxe.mp4"
+    },
+    {
+      "name": "2 bedroom 2 bath apartment with ocean view",
+      "sqft": "1,200 sq ft",
+      "layout": "1 living room · 2 bedrooms (3 beds) · 2 baths",
+      "feature": "This apartment offers a pool with a view.",
+      "price": "$4,675",
+      "id": "9bdbcc98-cac4-4c37-82f8-51c542c3a209",
+      "available": true,
+      "video": "/videos/2B%20ODeluxe.mp4"
+    },
+    {
+      "name": "2 bedroom 2 bath master apartment with bay view",
+      "sqft": "1,600 sq ft",
+      "layout": "1 living room · 2 bedrooms (3 beds) · 2 baths",
+      "feature": "This apartment's standout feature is the pool with a view.",
+      "price": "$5,211",
+      "id": "3200dc27-9ad7-4d47-acba-847215cf972e",
+      "available": true,
+      "video": "/videos/2B%20BMaster.mp4"
+    },
+    {
+      "name": "2 bedroom 2 bath master apartment with full ocean view",
+      "sqft": "1,600 sq ft",
+      "layout": "1 living room · 2 bedrooms (3 beds) · 2 baths",
+      "feature": "This apartment's standout feature is the pool with a view.",
+      "price": "$5,345",
+      "id": "a8b322bf-7f98-4f37-bce1-2b81b0fcff55",
+      "available": true,
+      "video": "/videos/2B%20OMaster.mp4"
+    },
+    {
+      "name": "3 bedroom 2 bath master apartment with bay view",
+      "sqft": "1,700 sq ft",
+      "layout": "1 living room · 3 bedrooms (4 beds) · 2 baths",
+      "feature": "This apartment's standout feature is the pool with a view.",
+      "price": "$6,283",
+      "id": "3099305e-b01d-4baf-aace-b000c7544e5f",
+      "available": true,
+      "video": "/videos/3B%20Bay.mp4"
+    }
+  ],
+  "addons": [
+    {
+      "t": "Housekeeping",
+      "p": "$120 daily",
+      "n": "Reservation in advance is necessary."
+    },
+    {
+      "t": "Onsite Parking",
+      "p": "$20 daily",
+      "n": ""
+    },
+    {
+      "t": "Babysitting",
+      "p": "$20 per hour",
+      "n": "Reservation in advance is required."
+    }
+  ]
+}

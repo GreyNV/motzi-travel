@@ -1,0 +1,6 @@
+.env
+.env.*
+!.env.example
+scripts/*.png
+scripts/*.jpg
+scripts/*.log
