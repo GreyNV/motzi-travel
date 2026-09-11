@@ -55,7 +55,7 @@ Implementation references: [Google Sheets append API](https://developers.google.
 
 ## Phase two
 
-See [the video preview plan](../docs/phase-two-video-previews.md) for the VEED investigation and planned silent three-second loops with click-to-enable-sound full playback. This behavior is not part of phase one.
+See [the video preview implementation notes](../docs/phase-two-video-previews.md) for the VEED investigation and the implemented silent three-second loops with click-to-enable-sound full playback.
 
 ## Detailed Google Sheets setup for later
 

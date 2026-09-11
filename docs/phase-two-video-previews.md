@@ -1,6 +1,6 @@
 # Phase two: silent video previews and VEED embeds
 
-Status: planned, not implemented in the phase-one main push. Requested 2026-09-11. Keep the tested native MP4 players for the owner's production comparison first.
+Status: implemented with the locally hosted MP4 players. VEED iframe hosting remains optional pending owner-generated embed codes that pass cross-origin testing.
 
 ## Requested experience
 
