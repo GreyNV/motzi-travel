@@ -53,6 +53,13 @@
     .hero-text-shadow{text-shadow:0 3px 18px rgba(0,0,0,.74),0 1px 4px rgba(0,0,0,.82)}
     .suite-preview-hint{position:absolute;left:14px;bottom:14px;z-index:2;display:flex;align-items:center;gap:8px;padding:9px 12px;background:rgba(7,22,20,.84);color:#fff;border:1px solid rgba(255,255,255,.36);font-size:11px;letter-spacing:.12em;text-transform:uppercase;pointer-events:none;backdrop-filter:blur(6px)}
     video[data-video-mode="full"] + .suite-preview-hint{display:none}
+    .gallery-viewport{overflow:hidden;outline:none}
+    .gallery-track{display:flex;gap:13px;will-change:transform}
+    .gallery-slide{position:relative;flex:0 0 calc(33.333% - 8.667px);aspect-ratio:4/3;border-radius:2px;overflow:hidden}
+    .gallery-control{width:44px;height:44px;border:1px solid #cbbd9f;background:transparent;color:#12312f;font-size:20px;cursor:pointer}
+    .gallery-control:hover{background:#12312f;color:#fdfaf4;border-color:#12312f}
+    @media(max-width:880px){.gallery-slide{flex-basis:calc(50% - 6.5px)}}
+    @media(max-width:600px){.gallery-slide{flex-basis:86%;aspect-ratio:4/3}.gallery-track{gap:10px}}
     @media (max-width:700px){.brand-logo{height:132px}.hero-logo{width:118px;margin-bottom:14px}.hero-copy-panel{padding:20px 18px;margin-left:0}.hero-copy-panel:before{background:linear-gradient(90deg,rgba(7,22,20,.76),rgba(7,22,20,.44));backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}}
   a,button{transition:background .2s,color .2s} :focus-visible{outline:3px solid #b8924a!important;outline-offset:4px} @media(max-width:700px){.catering-photo{grid-row:1}} @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
   </style>
@@ -251,15 +258,25 @@
         <span style="font-family:'Marcellus',serif;font-size:12.5px;letter-spacing:0.3em;text-transform:uppercase;color:#9c7833">Gallery</span>
         <h2 style="font-family:'Cormorant Garamond',serif;font-weight:600;color:#12312f;font-size:clamp(2rem,4vw,3.2rem);line-height:1.06;margin-top:14px">Seacoast Suites, Miami Beach</h2>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:13px">
-        <sc-for list="{{ gallery }}" as="g" hint-placeholder-count="8">
-          <div style="position:relative;aspect-ratio:1/1;border-radius:2px;overflow:hidden">
-            <img src="{{ g.img }}" alt="{{ g.label }}" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease" style-hover="transform:scale(1.06)">
-            <div style="position:absolute;left:0;right:0;bottom:0;padding:14px 12px 10px;background:linear-gradient(0deg,rgba(8,23,22,0.78) 0%,rgba(8,23,22,0) 100%)">
-              <span style="font-size:10px;letter-spacing:0.14em;color:#f6f0e4;text-transform:uppercase">{{ g.label }}</span>
+      <div class="gallery-viewport" data-gallery-carousel tabIndex="0" role="region" aria-label="Property photo carousel">
+        <div class="gallery-track" data-gallery-track>
+          <sc-for list="{{ gallery }}" as="g" hint-placeholder-count="8">
+            <div class="gallery-slide">
+              <img src="{{ g.img }}" alt="{{ g.label }}" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease" style-hover="transform:scale(1.06)">
+              <div style="position:absolute;left:0;right:0;bottom:0;padding:44px 16px 14px;background:linear-gradient(0deg,rgba(8,23,22,0.82) 0%,rgba(8,23,22,0) 100%)">
+                <span style="font-size:10px;letter-spacing:0.14em;color:#f6f0e4;text-transform:uppercase">{{ g.label }}</span>
+              </div>
             </div>
-          </div>
-        </sc-for>
+          </sc-for>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:18px;margin-top:22px">
+        <span data-gallery-status aria-live="polite" style="font-family:'Marcellus',serif;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#7b8986">1 / 8</span>
+        <div style="display:flex;align-items:center;gap:9px">
+          <button type="button" class="gallery-control" data-gallery-prev aria-label="Previous gallery image">←</button>
+          <button type="button" class="gallery-control" data-gallery-pause aria-label="Pause automatic gallery rotation" style="font-size:12px;letter-spacing:.08em">Ⅱ</button>
+          <button type="button" class="gallery-control" data-gallery-next aria-label="Next gallery image">→</button>
+        </div>
       </div>
     </div>
   </section>
@@ -478,15 +495,89 @@ class Component extends DCLogic {
     document.addEventListener('click', this._onPreviewClick);
     document.addEventListener('keydown', this._onPreviewKey);
     document.addEventListener('visibilitychange', this._onVisibility);
-    this._videoMutationObserver = new MutationObserver(this._setupPreviewVideos);
+    this._setupGalleryCarousel = () => {
+      const viewport = document.querySelector('[data-gallery-carousel]');
+      if (!viewport || viewport.dataset.carouselReady === 'true') return;
+      if (this._galleryCleanup) this._galleryCleanup();
+      viewport.dataset.carouselReady = 'true';
+      const section = viewport.closest('section');
+      const track = viewport.querySelector('[data-gallery-track]');
+      const slides = Array.from(track.children);
+      const status = section.querySelector('[data-gallery-status]');
+      const previous = section.querySelector('[data-gallery-prev]');
+      const next = section.querySelector('[data-gallery-next]');
+      const pause = section.querySelector('[data-gallery-pause]');
+      let index = 0;
+      let timer = null;
+      let manuallyPaused = false;
+      const stop = () => { if (timer) window.clearInterval(timer); timer = null; };
+      const updateStatus = () => { status.textContent = (index + 1) + ' / ' + slides.length; };
+      const go = (target, userInitiated = false) => {
+        index = (target + slides.length) % slides.length;
+        viewport.scrollTo({left: slides[index].offsetLeft, behavior: this._reducedMotion.matches ? 'auto' : 'smooth'});
+        updateStatus();
+        if (userInitiated) { stop(); start(); }
+      };
+      const start = () => {
+        if (manuallyPaused || this._reducedMotion.matches || document.hidden || timer) return;
+        timer = window.setInterval(() => go(index + 1), 6000);
+      };
+      const onPrevious = () => go(index - 1, true);
+      const onNext = () => go(index + 1, true);
+      const onPause = () => {
+        manuallyPaused = !manuallyPaused;
+        pause.textContent = manuallyPaused ? '▶' : 'Ⅱ';
+        pause.setAttribute('aria-label', manuallyPaused ? 'Resume automatic gallery rotation' : 'Pause automatic gallery rotation');
+        manuallyPaused ? stop() : start();
+      };
+      const onKey = (event) => {
+        if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+          event.preventDefault();
+          go(index + (event.key === 'ArrowRight' ? 1 : -1), true);
+        }
+      };
+      const onEnter = () => stop();
+      const onLeave = () => start();
+      const onFocusOut = () => window.setTimeout(() => { if (!section.contains(document.activeElement)) start(); });
+      const onVisibility = () => document.hidden ? stop() : start();
+      previous.addEventListener('click', onPrevious);
+      next.addEventListener('click', onNext);
+      pause.addEventListener('click', onPause);
+      viewport.addEventListener('keydown', onKey);
+      section.addEventListener('pointerenter', onEnter);
+      section.addEventListener('pointerleave', onLeave);
+      section.addEventListener('focusin', onEnter);
+      section.addEventListener('focusout', onFocusOut);
+      document.addEventListener('visibilitychange', onVisibility);
+      updateStatus();
+      start();
+      this._galleryCleanup = () => {
+        stop();
+        previous.removeEventListener('click', onPrevious);
+        next.removeEventListener('click', onNext);
+        pause.removeEventListener('click', onPause);
+        viewport.removeEventListener('keydown', onKey);
+        section.removeEventListener('pointerenter', onEnter);
+        section.removeEventListener('pointerleave', onLeave);
+        section.removeEventListener('focusin', onEnter);
+        section.removeEventListener('focusout', onFocusOut);
+        document.removeEventListener('visibilitychange', onVisibility);
+      };
+    };
+    this._videoMutationObserver = new MutationObserver(() => {
+      this._setupPreviewVideos();
+      this._setupGalleryCarousel();
+    });
     this._videoMutationObserver.observe(document.body, {childList:true, subtree:true});
     this._setupPreviewVideos();
+    this._setupGalleryCarousel();
   }
 
   componentWillUnmount() {
     if (this._mq) this._mq.removeEventListener('change', this._onMQ);
     if (this._previewObserver) this._previewObserver.disconnect();
     if (this._videoMutationObserver) this._videoMutationObserver.disconnect();
+    if (this._galleryCleanup) this._galleryCleanup();
     if (this._onPreviewClick) document.removeEventListener('click', this._onPreviewClick);
     if (this._onPreviewKey) document.removeEventListener('keydown', this._onPreviewKey);
     if (this._onVisibility) document.removeEventListener('visibilitychange', this._onVisibility);
