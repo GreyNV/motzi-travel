@@ -29,7 +29,7 @@ The reviewed VEED help page does not document a player SDK or parameters for see
 3. If these capabilities work, implement a VEED adapter with `preview`, `full`, `paused`, and `error` states. Restrict any supported postMessage integration to the documented origin and exact iframe window. Rewind to zero at three seconds only in preview state. On activation, cancel preview-loop logic before unmuting/playing.
 4. If VEED cannot offer the required control, retain the provided MP4s in native HTML video elements. This can deliver the exact requested behavior using currentTime, muted, play/pause, and playback events. Explain the finding before choosing a different hosting provider. A native preview that swaps to an iframe is a secondary option only if interruption/restart is acceptable; it does not meet the seamless-continuation requirement by default.
 5. For native playback, keep the same media element/source through the click transition. Use video-frame callbacks where available (with a timeupdate fallback) for the three-second boundary. Use an IntersectionObserver for preview visibility. Do not set native `loop` on the full-length file: that loops the entire video, not a three-second segment.
-6. Use room-specific poster frames. Confirm the provided files contain audio tracks; files with no audio cannot produce sound on activation. Keep a direct walkthrough link for player/network failures.
+6. Use room-specific poster frames and confirm the provided files contain audio tracks; files with no audio cannot produce sound on activation.
 
 ## Acceptance checks before rollout
 
